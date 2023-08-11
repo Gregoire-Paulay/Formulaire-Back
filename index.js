@@ -16,8 +16,6 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-PORT = 3000;
-
 app.get("/", (req, res) => {
   try {
     return res.status(200).json("Bienvenue sur le formulaire!");
@@ -54,5 +52,5 @@ app.all("*", (req, res) => {
 });
 //Pour écouter le serveur : ici on écoute la requete du port 3000
 app.listen(process.env.PORT, () => {
-  console.log(`server started on port : ${PORT}`);
+  console.log("server started");
 });
