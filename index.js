@@ -32,7 +32,7 @@ app.post("/form", async (req, res) => {
     const { firstname, lastname, email, sujet, message } = req.body;
     const messageData = {
       from: `${firstname} ${lastname} ${email}`,
-      to: "gregoire.paulay@gmail.com",
+      to: process.env.MAIL,
       subject: sujet,
       text: message,
     };
