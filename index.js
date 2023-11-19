@@ -26,21 +26,25 @@ app.get("/", (req, res) => {
 
 app.post("/form", async (req, res) => {
   try {
-    console.log(req.body);
-    const { firstname, lastname, email, sujet, message } = req.body;
-    const messageData = {
-      from: `${firstname} ${lastname} ${email}`,
-      to: process.env.MAIL,
-      subject: sujet,
-      text: message,
-    };
-    const response = await client.messages.create(
-      process.env.MAILGUN_DOMAIN,
-      messageData
-    );
+    // console.log(req.body);
+    const { name, email, sujet, message } = req.body;
+    if ((name, email, sujet, message)) {
+      const messageData = {
+        from: `${name} <${email}>`,
+        to: process.env.MAIL,
+        subject: sujet,
+        text: message,
+      };
+      const response = await client.messages.create(
+        process.env.MAILGUN_DOMAIN,
+        messageData
+      );
 
-    console.log(response);
-    res.status(200).json(response);
+      // console.log(response);
+      res.status(200).json(response);
+    } else {
+      return res.status(400).json({ message: "missing parameters" });
+    }
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
