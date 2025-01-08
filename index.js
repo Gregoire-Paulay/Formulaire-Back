@@ -5,7 +5,7 @@ const cors = require("cors");
 // Import des packages nécéssaire pour utiliser mailgun
 const formData = require("form-data");
 const Mailgun = require("mailgun.js");
-// -- Utilisation de Mailgun
+// -- Utilisation de Mailgun --
 const mailgun = new Mailgun(formData);
 const client = mailgun.client({
   username: "Grégoire Paulay",
